@@ -1,1 +1,0 @@
-D:\Burgund\Programowanie\Fiszki\Fiszki\FiszkiUI\FiszkiUI.csproj;x64
