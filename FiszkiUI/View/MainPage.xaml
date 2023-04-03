@@ -35,6 +35,11 @@
                 Clicked="AddCardClicked"
                 HorizontalOptions="Center" />
 
+            <Label
+                x:Name="DebugLabel"
+                HorizontalTextAlignment="End"
+                Text="Debug" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

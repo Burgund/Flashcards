@@ -20,8 +20,8 @@ public partial class MainPage : ContentPage
 
 		if (newCard != null)
 		{
-			CardBtn.Text = newCard.Name;
-			SemanticScreenReader.Announce(CardBtn.Text);
+			DebugLabel.Text = newCard.ToString();
+			SemanticScreenReader.Announce(DebugLabel.Text);
 		}
 	}
 }

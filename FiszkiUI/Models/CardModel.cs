@@ -19,6 +19,26 @@ public class CardModel
         this.LearningLanguage = learningLanguage;
         this.Description = description;
     }
+
+    public override string ToString()
+    {
+        var result = string.Format("Nazwa: {0}, nazwa do nauki: {1},{2}twój język: {3}, język którego się uczysz: {4},{5}priorytet: {6}, ostatnia odpowiedź: {7},{8}nauczona: {9}, komentarz: {10},{11}opis: {12}", 
+            Name, 
+            LearningName, 
+            Environment.NewLine, 
+            Language, 
+            LearningLanguage,
+            Environment.NewLine,
+            Priority,
+            LastAnswer,
+            Environment.NewLine,
+            Learned,
+            Comment,
+            Environment.NewLine,
+            Description);
+
+        return result;
+    }
 }
 
 public enum Languages
