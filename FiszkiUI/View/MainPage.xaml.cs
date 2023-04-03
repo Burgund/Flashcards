@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Maui.Views;
-using FiszkiUI.Models;
-using FiszkiUI.View;
+using FlashcardsUI.Models;
+using FlashcardsUI.View;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 public partial class MainPage : ContentPage
 {
@@ -13,14 +13,14 @@ public partial class MainPage : ContentPage
 
 	private async void AddCardClicked(object sender, EventArgs e)
 	{
-        var addCardPopup = new AddCard();
+        var addCardPopup = new AddFlashcard();
 
         var reasult = await this.ShowPopupAsync(addCardPopup);
-		var newCard = reasult as CardModel;
+		var newFlashcard = reasult as Flashcard;
 
-		if (newCard != null)
+		if (newFlashcard != null)
 		{
-			DebugLabel.Text = newCard.ToString();
+			DebugLabel.Text = newFlashcard.ToString();
 			SemanticScreenReader.Announce(DebugLabel.Text);
 		}
 	}

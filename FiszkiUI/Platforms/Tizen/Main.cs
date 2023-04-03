@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 class Program : MauiApplication
 {

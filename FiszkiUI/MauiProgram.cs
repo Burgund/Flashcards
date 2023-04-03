@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 public static class MauiProgram
 {

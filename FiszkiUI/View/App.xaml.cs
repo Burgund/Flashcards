@@ -1,4 +1,4 @@
-﻿namespace FiszkiUI;
+﻿namespace FlashcardsUI;
 
 public partial class App : Application
 {
