@@ -15,20 +15,20 @@ public partial class MainPage : ContentPage
 		this.flashcardsProcessor = flashcardsProcessor;
 	}
 
-	private async void AddCardClicked(object sender, EventArgs e)
+	private async void AddFlashcardClicked(object sender, EventArgs e)
 	{
         var addCardPopup = new AddFlashcard();
 
         var reasult = await this.ShowPopupAsync(addCardPopup);
 		var newFlashcard = reasult as Flashcard;
 
-        if (newFlashcard != null)
-		{
-			flashcardsProcessor.AddFlashcard(newFlashcard);
+		if (newFlashcard == null)
+			throw new Exception("MainPage.AddFlashcardClicked: newFlashcard is null");
 
-			DebugLabel.Text = newFlashcard.ToString();
-			SemanticScreenReader.Announce(DebugLabel.Text);
-		}
+		var response = flashcardsProcessor.AddFlashcard(newFlashcard);
+
+		DebugLabel.Text = response.ToString();
+		SemanticScreenReader.Announce(DebugLabel.Text);
     }
 }
 

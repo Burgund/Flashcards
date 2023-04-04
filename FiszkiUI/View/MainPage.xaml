@@ -32,7 +32,7 @@
                 x:Name="AddFlashcardButtod"
                 Text="Dodaj fiszkę"
                 SemanticProperties.Hint="Dodaje nową fiszkę"
-                Clicked="AddCardClicked"
+                Clicked="AddFlashcardClicked"
                 HorizontalOptions="Center" />
 
             <Label

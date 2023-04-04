@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Maui;
 using FlashcardsUI.Controllers;
+using FlashcardsUI.Models;
 using FlashcardsUI.Processors;
+using FlashcardsUI.ViewModels;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace FlashcardsUI;
 
@@ -31,9 +34,23 @@ public static class MauiProgram
 
         var app = builder.Build();
 
-        //TODO temporary service
-        app.Services.GetRequiredService<DataFileProcessor>().CreateDataFile();
+        SeedData(app);
 
-		return app;
+        return app;
 	}
+
+    private static void SeedData(MauiApp app)
+    {
+        var dataFileProcessor = app.Services.GetRequiredService<DataFileProcessor>();
+        if (!dataFileProcessor.FileExists())
+        {
+            dataFileProcessor.AddOrUpdateDataFile(JsonConvert.SerializeObject(new AppDataViewModel()
+            {
+                Flashcards = new List<Flashcard>(),
+                LearningLanguages = new List<Languages>(),
+                UserName = "default",
+                Language = Languages.English
+            }));
+        }
+    }
 }

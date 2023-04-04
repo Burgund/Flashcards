@@ -1,11 +1,7 @@
 ﻿using FlashcardsUI.Models;
 using FlashcardsUI.Processors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+using FlashcardsUI.ViewModels;
+using Newtonsoft.Json;
 
 namespace FlashcardsUI.Controllers
 {
@@ -21,9 +17,28 @@ namespace FlashcardsUI.Controllers
 
         public void AddFlashcard(Flashcard flashcard)
         {
-            var stringJsonFlashcard = JsonSerializer.Serialize<Flashcard>(flashcard);
+            var response = dataFileProcessor.GetData();
 
-            dataFileProcessor.AddData(stringJsonFlashcard);
+            if (string.IsNullOrWhiteSpace(response))
+                throw new Exception("FlashcardsUI.Controllers.FlashcardsController.AddFlashcard: empty response");
+
+            var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(response);
+
+            existingAppData.Flashcards.Add(flashcard);
+            var newDataFile = JsonConvert.SerializeObject(existingAppData);
+
+            dataFileProcessor.AddOrUpdateDataFile(newDataFile);
+        }
+
+        public Flashcard TakeLastFlashcard()
+        {
+            var response = dataFileProcessor.GetData();
+
+            if (string.IsNullOrWhiteSpace(response))
+                throw new Exception("FlashcardsUI.Controllers.FlashcardsController.AddFlashcard: empty response");
+
+            var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(response);
+            return existingAppData.Flashcards.Last();
         }
     }
 }

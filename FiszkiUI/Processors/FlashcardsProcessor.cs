@@ -1,10 +1,5 @@
 ﻿using FlashcardsUI.Controllers;
 using FlashcardsUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlashcardsUI.Processors
 {
@@ -17,7 +12,7 @@ namespace FlashcardsUI.Processors
             this.flashcardsController = flashcardsController;
         }
 
-        public void AddFlashcard(Flashcard flashcard)
+        public Flashcard AddFlashcard(Flashcard flashcard)
         {
             if (flashcard == null) 
             {
@@ -38,6 +33,9 @@ namespace FlashcardsUI.Processors
             }
 
             flashcardsController.AddFlashcard(flashcard);
+
+            var result = flashcardsController.TakeLastFlashcard();
+            return result;
         }
     }
 }

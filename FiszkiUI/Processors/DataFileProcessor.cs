@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlashcardsUI.Processors
 {
@@ -11,55 +7,23 @@ namespace FlashcardsUI.Processors
     {
         private string FILE_PATH = FileSystem.Current.AppDataDirectory + "\\FlashcardsUserData.txt";
 
-        public void CreateDataFile()
+        public void AddOrUpdateDataFile(string newDataFile)
         {
-            try
-            {
-                if (!File.Exists(FILE_PATH))
-                {
-                    using (FileStream fileStream = new FileStream(FILE_PATH, FileMode.Create))
-                    {
-                        using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
-                        {
-                            binaryWriter.Write("Flashcards" + Environment.NewLine);
-                        }
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-        }
-
-        public void AddData(string dataToAdd)
-        {
-            CheckIfFileExistsAndCreateIfNot();
-
-            if(string.IsNullOrWhiteSpace(dataToAdd))
+            if(string.IsNullOrWhiteSpace(newDataFile))
                 throw new Exception("DataFileProcessor.AddData: dataToAdd cant be null");
 
-            using (FileStream fileStream = new FileStream(FILE_PATH, FileMode.Append))
+            using (FileStream fileStream = new FileStream(FILE_PATH, FileMode.Create))
             {
                 using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                 {
-                    binaryWriter.Write(Environment.NewLine);
-                    binaryWriter.Write(dataToAdd);
+                    binaryWriter.Write(newDataFile);
                 }
             }
-        }
-
-        public void RemoveData() 
-        {
-            throw new NotImplementedException();
         }
 
         public string GetData()
         {
             string result = string.Empty;
-
-            CheckIfFileExistsAndCreateIfNot();
 
             using (FileStream fileStream = new FileStream(FILE_PATH, FileMode.Open, FileAccess.Read))
             {
@@ -72,12 +36,9 @@ namespace FlashcardsUI.Processors
             return result;
         }
 
-        private void CheckIfFileExistsAndCreateIfNot()
+        public bool FileExists()
         {
-            if (!File.Exists(FILE_PATH))
-            {
-                CreateDataFile();
-            }
+            return File.Exists(FILE_PATH);
         }
     }
 }
