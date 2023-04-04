@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using FlashcardsUI.Controllers;
+using FlashcardsUI.Processors;
 using Microsoft.Extensions.Logging;
 
 namespace FlashcardsUI;
@@ -21,6 +23,17 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+		builder.Services.AddTransient<MainPage>();
+        builder.Services.AddSingleton<FlashcardsController>();
+        builder.Services.AddSingleton<FlashcardsProcessor>();
+        //TODO temporary service
+        builder.Services.AddSingleton<DataFileProcessor>();
+
+        var app = builder.Build();
+
+        //TODO temporary service
+        app.Services.GetRequiredService<DataFileProcessor>().CreateDataFile();
+
+		return app;
 	}
 }

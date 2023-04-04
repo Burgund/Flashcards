@@ -1,14 +1,18 @@
 ﻿using CommunityToolkit.Maui.Views;
 using FlashcardsUI.Models;
+using FlashcardsUI.Processors;
 using FlashcardsUI.View;
 
 namespace FlashcardsUI;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	private readonly FlashcardsProcessor flashcardsProcessor;
+
+	public MainPage(FlashcardsProcessor flashcardsProcessor)
 	{
 		InitializeComponent();
+		this.flashcardsProcessor = flashcardsProcessor;
 	}
 
 	private async void AddCardClicked(object sender, EventArgs e)
@@ -18,11 +22,13 @@ public partial class MainPage : ContentPage
         var reasult = await this.ShowPopupAsync(addCardPopup);
 		var newFlashcard = reasult as Flashcard;
 
-		if (newFlashcard != null)
+        if (newFlashcard != null)
 		{
+			flashcardsProcessor.AddFlashcard(newFlashcard);
+
 			DebugLabel.Text = newFlashcard.ToString();
 			SemanticScreenReader.Announce(DebugLabel.Text);
 		}
-	}
+    }
 }
 
