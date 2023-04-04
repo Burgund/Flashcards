@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

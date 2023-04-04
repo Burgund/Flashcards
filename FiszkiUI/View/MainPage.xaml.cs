@@ -1,28 +1,34 @@
 ﻿using CommunityToolkit.Maui.Views;
-using FiszkiUI.Models;
-using FiszkiUI.View;
+using FlashcardsUI.Models;
+using FlashcardsUI.Processors;
+using FlashcardsUI.View;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	private readonly FlashcardsProcessor flashcardsProcessor;
+
+	public MainPage(FlashcardsProcessor flashcardsProcessor)
 	{
 		InitializeComponent();
+		this.flashcardsProcessor = flashcardsProcessor;
 	}
 
-	private async void AddCardClicked(object sender, EventArgs e)
+	private async void AddFlashcardClicked(object sender, EventArgs e)
 	{
-        var addCardPopup = new AddCard();
+        var addCardPopup = new AddFlashcard();
 
         var reasult = await this.ShowPopupAsync(addCardPopup);
-		var newCard = reasult as CardModel;
+		var newFlashcard = reasult as Flashcard;
 
-		if (newCard != null)
-		{
-			DebugLabel.Text = newCard.ToString();
-			SemanticScreenReader.Announce(DebugLabel.Text);
-		}
-	}
+		if (newFlashcard == null)
+			throw new Exception("MainPage.AddFlashcardClicked: newFlashcard is null");
+
+		var response = flashcardsProcessor.AddFlashcard(newFlashcard);
+
+		DebugLabel.Text = response.ToString();
+		SemanticScreenReader.Announce(DebugLabel.Text);
+    }
 }
 

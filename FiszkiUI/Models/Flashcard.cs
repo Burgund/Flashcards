@@ -1,6 +1,6 @@
-﻿namespace FiszkiUI.Models;
+﻿namespace FlashcardsUI.Models;
 
-public class CardModel
+public class Flashcard
 {
     public string Name { get; set; }
     public string LearningName { get; set; }
@@ -11,7 +11,7 @@ public class CardModel
     public bool Learned { get; set; } = false;
     public string Description { get; set; }
     public string Comment { get; set; } = string.Empty;
-    public CardModel(string name, string learningName, Languages language, Languages learningLanguage, string description)
+    public Flashcard(string name, string learningName, Languages language, Languages learningLanguage, string description)
     {
         this.Name = name;
         this.LearningName = learningName;

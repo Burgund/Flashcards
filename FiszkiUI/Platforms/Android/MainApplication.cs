@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 [Application]
 public class MainApplication : MauiApplication

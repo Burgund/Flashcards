@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace FiszkiUI;
+namespace FlashcardsUI;
 
 public class Program
 {
