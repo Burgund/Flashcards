@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlashcardsUI.Processors
+namespace FlashcardsAPI.Processors
 {
     //TODO temporary service
     public class DataFileProcessor

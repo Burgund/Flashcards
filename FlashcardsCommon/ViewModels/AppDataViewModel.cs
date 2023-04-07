@@ -1,11 +1,6 @@
-﻿using FlashcardsUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FlashcardsCommon.Models;
 
-namespace FlashcardsUI.ViewModels
+namespace FlashcardsCommon.ViewModels
 {
     public class AppDataViewModel
     {

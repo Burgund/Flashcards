@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
-using FlashcardsUI.Models;
-using FlashcardsUI.Processors;
+using FlashcardsCommon.Models;
+using FlashcardsAPI.Processors;
 using FlashcardsUI.View;
 
 namespace FlashcardsUI;
