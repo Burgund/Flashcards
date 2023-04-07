@@ -22,13 +22,13 @@ public partial class MainPage : ContentPage
         var reasult = await this.ShowPopupAsync(addCardPopup);
 		var newFlashcard = reasult as Flashcard;
 
-		if (newFlashcard == null)
-			throw new Exception("MainPage.AddFlashcardClicked: newFlashcard is null");
+		if (newFlashcard != null)
+		{
+			var response = flashcardsProcessor.AddFlashcard(newFlashcard);
 
-		var response = flashcardsProcessor.AddFlashcard(newFlashcard);
-
-		DebugLabel.Text = response.ToString();
-		SemanticScreenReader.Announce(DebugLabel.Text);
+			DebugLabel.Text = response.ToString();
+			SemanticScreenReader.Announce(DebugLabel.Text);
+		}
     }
 }
 
