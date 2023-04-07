@@ -1,9 +1,9 @@
-﻿using FlashcardsUI.Models;
-using FlashcardsUI.Processors;
-using FlashcardsUI.ViewModels;
+﻿using FlashcardsCommon.Models;
+using FlashcardsAPI.Processors;
+using FlashcardsCommon.ViewModels;
 using Newtonsoft.Json;
 
-namespace FlashcardsUI.Controllers
+namespace FlashcardsAPI.Controllers
 {
     public class FlashcardsController
     {
@@ -20,7 +20,7 @@ namespace FlashcardsUI.Controllers
             var response = dataFileProcessor.GetData();
 
             if (string.IsNullOrWhiteSpace(response))
-                throw new Exception("FlashcardsUI.Controllers.FlashcardsController.AddFlashcard: empty response");
+                throw new Exception("FlashcardsAPI.Controllers.FlashcardsController.AddFlashcard: empty response");
 
             var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(response);
 
@@ -35,7 +35,7 @@ namespace FlashcardsUI.Controllers
             var response = dataFileProcessor.GetData();
 
             if (string.IsNullOrWhiteSpace(response))
-                throw new Exception("FlashcardsUI.Controllers.FlashcardsController.AddFlashcard: empty response");
+                throw new Exception("FlashcardsAPI.Controllers.FlashcardsController.AddFlashcard: empty response");
 
             var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(response);
             return existingAppData.Flashcards.Last();

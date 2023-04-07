@@ -1,5 +1,5 @@
 using CommunityToolkit.Maui.Views;
-using FlashcardsUI.Models;
+using FlashcardsCommon.Models;
 
 namespace FlashcardsUI.View;
 

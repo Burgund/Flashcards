@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Maui;
-using FlashcardsUI.Controllers;
-using FlashcardsUI.Models;
-using FlashcardsUI.Processors;
-using FlashcardsUI.ViewModels;
+using FlashcardsAPI.Controllers;
+using FlashcardsCommon.Models;
+using FlashcardsAPI.Processors;
+using FlashcardsCommon.ViewModels;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 

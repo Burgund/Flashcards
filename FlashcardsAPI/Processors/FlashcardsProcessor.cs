@@ -1,7 +1,7 @@
-﻿using FlashcardsUI.Controllers;
-using FlashcardsUI.Models;
+﻿using FlashcardsAPI.Controllers;
+using FlashcardsCommon.Models;
 
-namespace FlashcardsUI.Processors
+namespace FlashcardsAPI.Processors
 {
     public class FlashcardsProcessor
     {

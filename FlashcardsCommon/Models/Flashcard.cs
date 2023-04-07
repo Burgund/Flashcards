@@ -1,4 +1,4 @@
-﻿namespace FlashcardsUI.Models;
+﻿namespace FlashcardsCommon.Models;
 
 public class Flashcard
 {
