@@ -3,43 +3,179 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlashcardsUI.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid Padding="30,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-            <Image
-                Source="dotnet_bot.png"
+        <Label Text="Powitanie placeholder. Account info"
+               Grid.Row="0"
+               Grid.Column="0"
+               Margin="20,20,20,20"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="18"/>
+
+        <Image
+            Margin="0,50,0,50"
+            Source="dotnet_bot.png"
+               Grid.Row="0"
+               Grid.Column="1"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
+                HeightRequest="150"
                 HorizontalOptions="Center" />
+        
+        <Label Text="Edit Account/Logout placeholder"
+               Grid.Row="0"
+               Grid.Column="2"
+               Margin="20,20,20,20"
+               HorizontalOptions="End"
+               VerticalOptions="Start"
+               FontSize="14"/>
 
-            <Label
-                Text="Fiszki"
+        <Label 
+            Margin="20,20,20,20"
+            Text="Fiszki app"
+               Grid.Row="1"
+               Grid.Column="1"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+            VerticalOptions="Center"/>
 
-            <Label
-                Text="Aplikacja do nauki języków za pomocą fiszek"
+        <TableView Intent="Data" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" HorizontalOptions="Center">
+            <TableRoot>
+                <TableSection Title="Lista fiszek placeholder">
+                    <TextCell Text="Fiszka 1 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 1 placeholder" />
+                    <TextCell Text="Fiszka 2 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 2 placeholder" />
+                    <TextCell Text="Fiszka 3 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 3 placeholder" />
+                    <TextCell Text="Fiszka 4 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 4 placeholder" />
+                    <TextCell Text="Fiszka 5 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 5 placeholder" />
+                    <TextCell Text="Fiszka 6 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 6 placeholder" />
+                    <TextCell Text="Fiszka 7 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 7 placeholder" />
+                    <TextCell Text="Fiszka 8 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 8 placeholder" />
+                    <TextCell Text="Fiszka 9 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 9 placeholder" />
+                    <TextCell Text="Fiszka 10 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 10 placeholder" />
+                    <TextCell Text="Fiszka 11 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 11 placeholder" />
+                    <TextCell Text="Fiszka 12 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 12 placeholder" />
+                    <TextCell Text="Fiszka 13 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 13 placeholder" />
+                    <TextCell Text="Fiszka 14 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 14 placeholder" />
+                    <TextCell Text="Fiszka 15 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 15 placeholder" />
+                    <TextCell Text="Fiszka 16 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 16 placeholder" />
+                    <TextCell Text="Fiszka 17 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 17 placeholder" />
+                    <TextCell Text="Fiszka 18 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 18 placeholder" />
+                    <TextCell Text="Fiszka 19 placeholder"
+                      Detail="Lorem ipsum foofoo fiszka 19 placeholder" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <Label 
+            Margin="0,20,0,20"
+            Text="Aplikacja do nauki języków za pomocą fiszek"
+               Grid.Row="2"
+               Grid.Column="1"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <Button
-                x:Name="AddFlashcardButtod"
+        <Grid Padding="5,0" Grid.Row="3"
+               Grid.Column="1" HorizontalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+            Margin="5,5,5,5"
+            x:Name="RandomFishcardButton"
+                Grid.Row="0"
+               Grid.Column="0"
+                Text="Losuj"
+                SemanticProperties.Hint="Pokaż losową fiszkę"
+                Clicked="RandomFishcardClicked"
+                HorizontalOptions="End"
+            HeightRequest="12"/>
+
+            <Button 
+            Margin="5,5,5,5"
+            x:Name="AddFlashcardButton"
+                Grid.Row="0"
+               Grid.Column="1"
                 Text="Dodaj fiszkę"
                 SemanticProperties.Hint="Dodaje nową fiszkę"
                 Clicked="AddFlashcardClicked"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+            HeightRequest="12"/>
 
-            <Label
-                x:Name="DebugLabel"
+            <Button 
+            Margin="5,5,5,5"
+            x:Name="LearnButton"
+                Grid.Row="0"
+               Grid.Column="2"
+                Text="Rozpocznij naukę"
+                SemanticProperties.Hint="Rozpocznij naukę"
+                Clicked="LearnClicked"
+                HorizontalOptions="Start"
+            HeightRequest="12"/>
+        </Grid>
+
+
+        <Label x:Name="DebugLabel"
+               Grid.Row="4"
+               Grid.Column="2"
                 HorizontalTextAlignment="End"
-                Text="Debug" />
+                Text="Debug"
+               IsVisible="False" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <Label x:Name="Language"
+               Margin="0,20,0,20"
+               Grid.Row="4"
+               Grid.Column="0"
+                HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               HeightRequest="60"
+                Text="Twój język placeholder."/>
+
+        <Label x:Name="LearningLanguage"
+               Margin="0,20,0,20"
+               Grid.Row="4"
+               Grid.Column="1"
+                HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               HeightRequest="60"
+                Text="Język którego się uczysz placeholder"/>
+    </Grid>
 </ContentPage>

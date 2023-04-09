@@ -28,7 +28,19 @@ public partial class MainPage : ContentPage
 
 			DebugLabel.Text = response.ToString();
 			SemanticScreenReader.Announce(DebugLabel.Text);
-		}
+            DebugLabel.IsVisible = true;
+
+        }
+    }
+
+    private void RandomFishcardClicked(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void LearnClicked(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
 
