@@ -24,18 +24,18 @@
                Margin="10" Text="Dodaj nową fiszkę:"/>
 
         <Label Text="Fiszka do nauki języka:" Grid.Row="1" Grid.Column="0"/>
-        <Entry x:Name="LearningLanguage" Text="2" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
+        <Entry x:Name="LearningLanguage" Placeholder="2" PlaceholderColor="DimGray" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
 
         <Label Text="Twój język:" Grid.Row="2" Grid.Column="0"/>
-        <Entry x:Name="LanguageLabel" Text="1" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
+        <Entry x:Name="LanguageLabel" Placeholder="1" PlaceholderColor="DimGray" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
 
         <Label Text="Tekst w [twój język]:" Grid.Row="3" Grid.Column="0"/>
-        <Entry x:Name="NameEntry" Text="Wpisz słowo w twoim języku." Grid.Row="3" Grid.Column="1"/>
+        <Entry x:Name="NameEntry" Placeholder="Wpisz słowo w twoim języku." PlaceholderColor="DimGray" Grid.Row="3" Grid.Column="1"/>
 
         <Label Text="Tekst w [język którego się uczysz]:" Grid.Row="4" Grid.Column="0"/>
-        <Entry x:Name="LearningNameEntry" Text="Wpisz słowo w języku którego się uczysz." Grid.Row="4" Grid.Column="1"/>
+        <Entry x:Name="LearningNameEntry" Placeholder="Wpisz słowo w języku którego się uczysz." PlaceholderColor="DimGray" Grid.Row="4" Grid.Column="1"/>
 
-        <Editor x:Name="DescriptionEditor" Text="Miejsce na przykłady, szczegóły i dokładniejszy opis"
+        <Editor x:Name="DescriptionEditor" Placeholder="Miejsce na przykłady, szczegóły i dokładniejszy opis" PlaceholderColor="DimGray"
                 Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"/>
 
         <Button x:Name="ConfirmationButton" Grid.Row="6" Grid.Column="0" Text="Potwierdź" Clicked="OnConfirmButtonClicked" CornerRadius="0" Padding="0,0,0,10" />

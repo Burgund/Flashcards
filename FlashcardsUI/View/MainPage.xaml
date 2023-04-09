@@ -4,6 +4,13 @@
              x:Class="FlashcardsUI.MainPage">
 
     <Grid Padding="30,0">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="SlateBlue" Offset="0.0" />
+                <GradientStop Color="BlueViolet" Offset="0.5" />
+                <GradientStop Color="MediumOrchid" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
@@ -18,6 +25,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Text="Powitanie placeholder. Account info"
+               TextColor="Indigo"
                Grid.Row="0"
                Grid.Column="0"
                Margin="20,20,20,20"
@@ -28,71 +36,74 @@
         <Image
             Margin="0,50,0,50"
             Source="dotnet_bot.png"
-               Grid.Row="0"
-               Grid.Column="1"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="150"
-                HorizontalOptions="Center" />
-        
-        <Label Text="Edit Account/Logout placeholder"
-               Grid.Row="0"
-               Grid.Column="2"
-               Margin="20,20,20,20"
-               HorizontalOptions="End"
-               VerticalOptions="Start"
-               FontSize="14"/>
+            Grid.Row="0"
+            Grid.Column="1"
+            SemanticProperties.Description="Cute dot net bot waving hi to you!"
+            HeightRequest="150"
+            HorizontalOptions="Center" />
+
+        <Label 
+            Text="Edit Account/Logout placeholder"
+            TextColor="Indigo"
+            Grid.Row="0"
+            Grid.Column="2"
+            Margin="20,20,20,20"
+            HorizontalOptions="End"
+            VerticalOptions="Start"
+            FontSize="14"/>
 
         <Label 
             Margin="20,20,20,20"
             Text="Fiszki app"
-               Grid.Row="1"
-               Grid.Column="1"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center"
+            TextColor="Indigo"
+            Grid.Row="1"
+            Grid.Column="1"
+            SemanticProperties.HeadingLevel="Level1"
+            FontSize="32"
+            HorizontalOptions="Center"
             VerticalOptions="Center"/>
 
         <TableView Intent="Data" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" HorizontalOptions="Center">
             <TableRoot>
-                <TableSection Title="Lista fiszek placeholder">
+                <TableSection Title="Lista fiszek placeholder" TextColor="Indigo">
                     <TextCell Text="Fiszka 1 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 1 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 1 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 2 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 2 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 2 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 3 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 3 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 3 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 4 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 4 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 4 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 5 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 5 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 5 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 6 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 6 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 6 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 7 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 7 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 7 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 8 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 8 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 8 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 9 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 9 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 9 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 10 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 10 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 10 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 11 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 11 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 11 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 12 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 12 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 12 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 13 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 13 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 13 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 14 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 14 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 14 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 15 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 15 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 15 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 16 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 16 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 16 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 17 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 17 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 17 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 18 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 18 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 18 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                     <TextCell Text="Fiszka 19 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 19 placeholder" />
+                      Detail="Lorem ipsum foofoo fiszka 19 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
                 </TableSection>
             </TableRoot>
         </TableView>
@@ -100,15 +111,14 @@
         <Label 
             Margin="0,20,0,20"
             Text="Aplikacja do nauki języków za pomocą fiszek"
-               Grid.Row="2"
-               Grid.Column="1"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            TextColor="Indigo"
+            Grid.Row="2"
+            Grid.Column="1"
+            SemanticProperties.HeadingLevel="Level2"
+            FontSize="18"
+            HorizontalOptions="Center" />
 
-        <Grid Padding="5,0" Grid.Row="3"
-               Grid.Column="1" HorizontalOptions="CenterAndExpand">
+        <Grid Padding="5,0" Grid.Row="3" Grid.Column="1" HorizontalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -119,63 +129,72 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-            Margin="5,5,5,5"
-            x:Name="RandomFishcardButton"
+                Margin="5,5,5,5"
+                BackgroundColor="Indigo"
+                x:Name="RandomFishcardButton"
                 Grid.Row="0"
-               Grid.Column="0"
+                Grid.Column="0"
                 Text="Losuj"
                 SemanticProperties.Hint="Pokaż losową fiszkę"
                 Clicked="RandomFishcardClicked"
                 HorizontalOptions="End"
-            HeightRequest="12"/>
+                HeightRequest="12" />
 
             <Button 
-            Margin="5,5,5,5"
-            x:Name="AddFlashcardButton"
+                Margin="5,5,5,5"
+                BackgroundColor="Indigo"
+                x:Name="AddFlashcardButton"
                 Grid.Row="0"
-               Grid.Column="1"
+                Grid.Column="1"
                 Text="Dodaj fiszkę"
                 SemanticProperties.Hint="Dodaje nową fiszkę"
                 Clicked="AddFlashcardClicked"
                 HorizontalOptions="Center"
-            HeightRequest="12"/>
+                HeightRequest="12" />
 
             <Button 
-            Margin="5,5,5,5"
-            x:Name="LearnButton"
+                Margin="5,5,5,5"
+                BackgroundColor="Indigo"
+                x:Name="LearnButton"
                 Grid.Row="0"
-               Grid.Column="2"
+                Grid.Column="2"
                 Text="Rozpocznij naukę"
                 SemanticProperties.Hint="Rozpocznij naukę"
                 Clicked="LearnClicked"
                 HorizontalOptions="Start"
-            HeightRequest="12"/>
+                HeightRequest="12" />
         </Grid>
 
 
-        <Label x:Name="DebugLabel"
-               Grid.Row="4"
-               Grid.Column="2"
-                HorizontalTextAlignment="End"
-                Text="Debug"
-               IsVisible="False" />
+        <Label 
+            x:Name="DebugLabel"
+            TextColor="Indigo"
+            Grid.Row="4"
+            Grid.Column="2"
+            HorizontalTextAlignment="End"
+            Text="Debug"
+            IsVisible="False" />
 
-        <Label x:Name="Language"
-               Margin="0,20,0,20"
-               Grid.Row="4"
-               Grid.Column="0"
-                HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               HeightRequest="60"
-                Text="Twój język placeholder."/>
+        <Label 
+            x:Name="Language"
+            Margin="0,20,0,20"
+            Grid.Row="4"
+            Grid.Column="0"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            HeightRequest="60"
+            Text="Twój język placeholder."
+            TextColor="Indigo"/>
 
-        <Label x:Name="LearningLanguage"
-               Margin="0,20,0,20"
-               Grid.Row="4"
-               Grid.Column="1"
-                HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               HeightRequest="60"
-                Text="Język którego się uczysz placeholder"/>
+        <Label 
+            x:Name="LearningLanguage"
+            Margin="0,20,0,20"
+            Grid.Row="4"
+            Grid.Column="1"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            HeightRequest="60"
+            Text="Język którego się uczysz placeholder"
+            TextColor="Indigo"/>
     </Grid>
 </ContentPage>
