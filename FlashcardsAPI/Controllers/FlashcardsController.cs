@@ -17,27 +17,12 @@ namespace FlashcardsAPI.Controllers
 
         public void AddFlashcard(Flashcard flashcard)
         {
-            var response = dataFileProcessor.GetData();
-
-            if (string.IsNullOrWhiteSpace(response))
-                throw new Exception("FlashcardsAPI.Controllers.FlashcardsController.AddFlashcard: empty response");
-
-            var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(response);
-
-            existingAppData.Flashcards.Add(flashcard);
-            var newDataFile = JsonConvert.SerializeObject(existingAppData);
-
-            dataFileProcessor.AddOrUpdateDataFile(newDataFile);
+            dataFileProcessor.AddFlashcard(flashcard);
         }
 
         public Flashcard TakeLastFlashcard()
         {
-            var response = dataFileProcessor.GetData();
-
-            if (string.IsNullOrWhiteSpace(response))
-                throw new Exception("FlashcardsAPI.Controllers.FlashcardsController.AddFlashcard: empty response");
-
-            var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(response);
+            var existingAppData = dataFileProcessor.GetData();
             return existingAppData.Flashcards.Last();
         }
     }

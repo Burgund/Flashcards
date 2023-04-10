@@ -11,6 +11,12 @@ public class Flashcard
     public bool Learned { get; set; } = false;
     public string Description { get; set; }
     public string Comment { get; set; } = string.Empty;
+
+    public Flashcard()
+    {
+
+    }
+
     public Flashcard(string name, string learningName, Languages language, Languages learningLanguage, string description)
     {
         this.Name = name;

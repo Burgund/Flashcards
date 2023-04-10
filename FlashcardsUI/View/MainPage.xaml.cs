@@ -26,21 +26,57 @@ public partial class MainPage : ContentPage
 		{
 			var response = flashcardsProcessor.AddFlashcard(newFlashcard);
 
-			DebugLabel.Text = response.ToString();
-			SemanticScreenReader.Announce(DebugLabel.Text);
-            DebugLabel.IsVisible = true;
+            
+            if (response != null)
+            {
+                PrepareLabelAsMessage(DebugLabel);
+                DebugLabel.Text = response.ToString();
+            }
+            else
+            {
+                PrepareLabelAsError(DebugLabel);
+                DebugLabel.Text = "ERROR - Can't add empty flashcard!";
+            }
 
+            AnnounceDebugLabel();
         }
+    }
+
+    private void CloseAppClicked(object sender, EventArgs e)
+    {
+        Application.Current.Quit();
     }
 
     private void RandomFishcardClicked(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        PrepareLabelAsError(DebugLabel);
+        DebugLabel.Text = new NotImplementedException().Message;
+        AnnounceDebugLabel();
     }
 
     private void LearnClicked(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        PrepareLabelAsError(DebugLabel);
+        DebugLabel.Text = new NotImplementedException().Message;
+        AnnounceDebugLabel();
+    }
+
+    private void PrepareLabelAsError(Label label)
+    {
+        DebugLabel.TextColor = Colors.DarkRed;
+        DebugLabel.FontAttributes = FontAttributes.Bold;
+    }
+
+    private void PrepareLabelAsMessage(Label label)
+    {
+        DebugLabel.TextColor = Colors.Indigo;
+        DebugLabel.FontAttributes = FontAttributes.None;
+    }
+
+    private void AnnounceDebugLabel()
+    {
+        SemanticScreenReader.Announce(DebugLabel.Text);
+        DebugLabel.IsVisible = true;
     }
 }
 

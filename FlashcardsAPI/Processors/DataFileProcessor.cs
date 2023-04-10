@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FlashcardsCommon.Models;
+using FlashcardsCommon.ViewModels;
+using Newtonsoft.Json;
+using System;
 
 namespace FlashcardsAPI.Processors
 {
@@ -21,10 +24,25 @@ namespace FlashcardsAPI.Processors
             }
         }
 
-        public string GetData()
+        public void AddFlashcard(Flashcard flashcard)
+        {
+            var dataFile = GetData();
+            dataFile.Flashcards.Add(flashcard);
+            var updatedDataFileString = JsonConvert.SerializeObject(dataFile);
+            AddOrUpdateDataFile(updatedDataFileString);
+        }
+
+        public void RemoveFlashcard(Flashcard flashcard)
+        {
+            var dataFile = GetData();
+            dataFile.Flashcards.Remove(flashcard);
+            var updatedDataFileString = JsonConvert.SerializeObject(dataFile);
+            AddOrUpdateDataFile(updatedDataFileString);
+        }
+
+        public AppDataViewModel GetData()
         {
             string result = string.Empty;
-
             using (FileStream fileStream = new FileStream(FILE_PATH, FileMode.Open, FileAccess.Read))
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
@@ -33,7 +51,8 @@ namespace FlashcardsAPI.Processors
                 }
             }
 
-            return result;
+            var existingAppData = JsonConvert.DeserializeObject<AppDataViewModel>(result);
+            return existingAppData;
         }
 
         public bool FileExists()

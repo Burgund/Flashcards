@@ -48,9 +48,24 @@
             Grid.Row="0"
             Grid.Column="2"
             Margin="20,20,20,20"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            FontSize="14" />
+
+        <Button 
+            Text="X"
+            BackgroundColor="Indigo"
+            TextColor="White"
+            FontAttributes="Bold"
+            Grid.Row="0"
+            Grid.Column="2"
+            Margin="20,20,20,20"
             HorizontalOptions="End"
             VerticalOptions="Start"
-            FontSize="14"/>
+            MaximumHeightRequest="10"
+            MaximumWidthRequest="10"
+            FontSize="12" 
+            Clicked="CloseAppClicked" />
 
         <Label 
             Margin="20,20,20,20"
@@ -61,7 +76,7 @@
             SemanticProperties.HeadingLevel="Level1"
             FontSize="32"
             HorizontalOptions="Center"
-            VerticalOptions="Center"/>
+            VerticalOptions="Center" />
 
         <TableView Intent="Data" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" HorizontalOptions="Center">
             <TableRoot>
@@ -172,6 +187,7 @@
             Grid.Row="4"
             Grid.Column="2"
             HorizontalTextAlignment="End"
+            VerticalTextAlignment="Center"
             Text="Debug"
             IsVisible="False" />
 
