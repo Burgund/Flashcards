@@ -7,30 +7,33 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using FlashcardsAPI.Cache;
 using Microsoft.Maui.LifecycleEvents;
+#if WINDOWS 
 using Microsoft.UI.Windowing;
 using Microsoft.UI;
+#endif
 
 namespace FlashcardsUI;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.UseMauiCommunityToolkit()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 #if WINDOWS
+
         builder.ConfigureLifecycleEvents(events =>
         {
             events.AddWindows(windowsLifecycleBuilder =>
@@ -71,7 +74,7 @@ public static class MauiProgram
         InitializeCache(app);
 
         return app;
-	}
+    }
 
     private static void SeedData(MauiApp app)
     {
