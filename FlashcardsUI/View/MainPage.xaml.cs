@@ -8,12 +8,23 @@ namespace FlashcardsUI;
 public partial class MainPage : ContentPage
 {
 	private readonly FlashcardsProcessor flashcardsProcessor;
+    private readonly AccountCacheProcessor accountCacheProcessor;
 
-	public MainPage(FlashcardsProcessor flashcardsProcessor)
+    public MainPage(FlashcardsProcessor flashcardsProcessor, AccountCacheProcessor accountCacheProcessor)
 	{
-		InitializeComponent();
-		this.flashcardsProcessor = flashcardsProcessor;
-	}
+        this.flashcardsProcessor = flashcardsProcessor;
+        this.accountCacheProcessor = accountCacheProcessor;
+
+        InitializeComponent();
+        InitializeComponentData();
+    }
+
+    private void InitializeComponentData()
+    {
+        LanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
+        LanguageComboBox.SelectedItem = accountCacheProcessor.GetDefaultLanguage();
+        SetFlagImage((Languages)LanguageComboBox.SelectedItem, LanguageImg);
+    }
 
 	private async void AddFlashcardClicked(object sender, EventArgs e)
 	{
@@ -77,6 +88,16 @@ public partial class MainPage : ContentPage
     {
         SemanticScreenReader.Announce(DebugLabel.Text);
         DebugLabel.IsVisible = true;
+    }
+
+    private void SetFlagImage(Languages language, Image image)
+    {
+        if (language == Languages.English)
+            image.Source = "fla_gbr.png";
+        else if (language == Languages.German)
+            image.Source = "fla_ger.png";
+        else if (language == Languages.Polish)
+            image.Source = "fla_pl.png";
     }
 }
 
