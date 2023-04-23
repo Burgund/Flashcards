@@ -1,4 +1,5 @@
 ﻿using FlashcardsAPI.Cache;
+using FlashcardsCommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,16 @@ namespace FlashcardsAPI.Processors
             accountDataCache.CurrentLearningLanguage = appData.LearningLanguages.FirstOrDefault();
             accountDataCache.LearningLanguages = appData.LearningLanguages;
             accountDataCache.Language = appData.Language;
+        }
+
+        public void AddDefaultLanguage(Languages language)
+        {
+            accountDataCache.Language = language;
+        }
+
+        public Languages GetDefaultLanguage()
+        {
+            return accountDataCache.Language;
         }
     }
 }

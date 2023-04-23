@@ -6,6 +6,7 @@ using FlashcardsCommon.ViewModels;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using FlashcardsAPI.Cache;
+using Syncfusion.Maui.Core.Hosting;
 using Microsoft.Maui.LifecycleEvents;
 #if WINDOWS 
 using Microsoft.UI.Windowing;
@@ -21,6 +22,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .ConfigureSyncfusionCore()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
@@ -86,7 +88,7 @@ public static class MauiProgram
                 Flashcards = new List<Flashcard>(),
                 LearningLanguages = new List<Languages>(),
                 UserName = "default",
-                Language = Languages.English
+                Language = Languages.Polish
             }));
         }
     }
