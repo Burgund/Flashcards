@@ -59,5 +59,15 @@ namespace FlashcardsAPI.Processors
         {
             return File.Exists(FILE_PATH);
         }
+
+        public void SetCurrentLearningLanguage(Languages language)
+        {
+            var dataFile = GetData();
+            if(!dataFile.LearningLanguages.Contains(language))
+                dataFile.LearningLanguages.Add(language);
+            dataFile.CurrentLearningLanguage = language;
+            var updatedDataFileString = JsonConvert.SerializeObject(dataFile);
+            AddOrUpdateDataFile(updatedDataFileString);
+        }
     }
 }
