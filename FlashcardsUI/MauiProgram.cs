@@ -61,11 +61,13 @@ public static class MauiProgram
         builder.Services.AddTransient<MainPage>();
 
         builder.Services.AddSingleton<FlashcardsController>();
+        builder.Services.AddSingleton<UserConfigurationController>();
 
         builder.Services.AddSingleton<FlashcardsProcessor>();
         builder.Services.AddSingleton<DataFileProcessor>();
         builder.Services.AddSingleton<AccountCacheProcessor>();
         builder.Services.AddSingleton<FlashcardsCacheProcessor>();
+        builder.Services.AddSingleton<UserConfigurationProcessor>();
 
         builder.Services.AddSingleton<FlashcardsDataCache>();
         builder.Services.AddSingleton<AccountDataCache>();
@@ -88,7 +90,8 @@ public static class MauiProgram
                 Flashcards = new List<Flashcard>(),
                 LearningLanguages = new List<Languages>(),
                 UserName = "default",
-                Language = Languages.Polish
+                Language = Languages.Polish,
+                CurrentLearningLanguage = Languages.English
             }));
         }
     }

@@ -238,7 +238,7 @@
                 HeightRequest="30"
                 BackgroundColor="MediumOrchid"
                 TextColor="Indigo"
-                ItemsSource="{Binding Languages}"/>
+                SelectionChanged="LearningLanguageComboBoxSelectionChanged" />
         </Grid>
 
         <Label 

@@ -2,6 +2,7 @@
 using FlashcardsCommon.Models;
 using FlashcardsAPI.Processors;
 using FlashcardsUI.View;
+using FlashcardsAPI.Controllers;
 
 namespace FlashcardsUI;
 
@@ -9,11 +10,13 @@ public partial class MainPage : ContentPage
 {
 	private readonly FlashcardsProcessor flashcardsProcessor;
     private readonly AccountCacheProcessor accountCacheProcessor;
+    private readonly UserConfigurationController userConfigurationController;
 
-    public MainPage(FlashcardsProcessor flashcardsProcessor, AccountCacheProcessor accountCacheProcessor)
+    public MainPage(FlashcardsProcessor flashcardsProcessor, AccountCacheProcessor accountCacheProcessor, UserConfigurationController userConfigurationController)
 	{
         this.flashcardsProcessor = flashcardsProcessor;
         this.accountCacheProcessor = accountCacheProcessor;
+        this.userConfigurationController = userConfigurationController;
 
         InitializeComponent();
         InitializeComponentData();
@@ -24,6 +27,10 @@ public partial class MainPage : ContentPage
         LanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
         LanguageComboBox.SelectedItem = accountCacheProcessor.GetDefaultLanguage();
         SetFlagImage((Languages)LanguageComboBox.SelectedItem, LanguageImg);
+
+        LearningLanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
+        LearningLanguageComboBox.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
+        SetFlagImage((Languages)LearningLanguageComboBox.SelectedItem, LearningLanguageImg);
     }
 
 	private async void AddFlashcardClicked(object sender, EventArgs e)
@@ -36,7 +43,6 @@ public partial class MainPage : ContentPage
 		if (newFlashcard != null)
 		{
 			var response = flashcardsProcessor.AddFlashcard(newFlashcard);
-
             
             if (response != null)
             {
@@ -98,6 +104,13 @@ public partial class MainPage : ContentPage
             image.Source = "fla_ger.png";
         else if (language == Languages.Polish)
             image.Source = "fla_pl.png";
+    }
+
+    private void LearningLanguageComboBoxSelectionChanged(object sender, EventArgs e)
+    {
+        var selectedLanguage = (Languages)LearningLanguageComboBox.SelectedItem;
+        SetFlagImage(selectedLanguage, LearningLanguageImg);
+        userConfigurationController.SetCurrentLearningLanguage(selectedLanguage);
     }
 }
 

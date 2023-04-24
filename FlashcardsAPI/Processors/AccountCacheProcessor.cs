@@ -23,19 +23,24 @@ namespace FlashcardsAPI.Processors
         {
             var appData = dataFileProcessor.GetData();
             accountDataCache.UserName = appData.UserName;
-            accountDataCache.CurrentLearningLanguage = appData.LearningLanguages.FirstOrDefault();
+            accountDataCache.CurrentLearningLanguage = appData.CurrentLearningLanguage;
             accountDataCache.LearningLanguages = appData.LearningLanguages;
             accountDataCache.Language = appData.Language;
-        }
-
-        public void AddDefaultLanguage(Languages language)
-        {
-            accountDataCache.Language = language;
         }
 
         public Languages GetDefaultLanguage()
         {
             return accountDataCache.Language;
+        }
+
+        public Languages GetCurrentLearningLanguage()
+        {
+            return accountDataCache.CurrentLearningLanguage;
+        }
+
+        public void SetCurrentLearningLanguage(Languages language)
+        {
+            accountDataCache.CurrentLearningLanguage = language;
         }
     }
 }

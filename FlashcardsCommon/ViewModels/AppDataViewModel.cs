@@ -7,6 +7,7 @@ namespace FlashcardsCommon.ViewModels
         public string UserName { get; set; }
         public Languages Language { get; set; }
         public List<Languages> LearningLanguages { get; set; }
+        public Languages CurrentLearningLanguage { get; set; }
         public List<Flashcard> Flashcards { get; set; }
     }
 }
