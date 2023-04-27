@@ -25,7 +25,7 @@ public partial class MainPage : ContentPage
     private void InitializeComponentData()
     {
         LanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
-        LanguageComboBox.SelectedItem = accountCacheProcessor.GetDefaultLanguage();
+        LanguageComboBox.SelectedItem = accountCacheProcessor.GetLanguage();
         SetFlagImage((Languages)LanguageComboBox.SelectedItem, LanguageImg);
 
         LearningLanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
@@ -35,7 +35,7 @@ public partial class MainPage : ContentPage
 
 	private async void AddFlashcardClicked(object sender, EventArgs e)
 	{
-        var addCardPopup = new AddFlashcard();
+        var addCardPopup = new AddFlashcard(accountCacheProcessor);
 
         var reasult = await this.ShowPopupAsync(addCardPopup);
 		var newFlashcard = reasult as Flashcard;
