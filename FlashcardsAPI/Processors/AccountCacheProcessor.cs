@@ -28,7 +28,7 @@ namespace FlashcardsAPI.Processors
             accountDataCache.Language = appData.Language;
         }
 
-        public Languages GetDefaultLanguage()
+        public Languages GetLanguage()
         {
             return accountDataCache.Language;
         }

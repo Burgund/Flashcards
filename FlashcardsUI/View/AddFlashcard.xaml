@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlashcardsUI.View.AddFlashcard"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              CanBeDismissedByTappingOutsideOfPopup="False">
 
     <Grid>
@@ -24,10 +25,20 @@
                Margin="10" Text="Dodaj nową fiszkę:"/>
 
         <Label Text="Fiszka do nauki języka:" Grid.Row="1" Grid.Column="0"/>
-        <Entry x:Name="LearningLanguage" Placeholder="2" PlaceholderColor="DimGray" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
+        <editors:SfComboBox 
+                x:Name="LearningLanguageComboBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                HeightRequest="40"/>
 
         <Label Text="Twój język:" Grid.Row="2" Grid.Column="0"/>
-        <Entry x:Name="LanguageLabel" Placeholder="1" PlaceholderColor="DimGray" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
+        <editors:SfComboBox 
+                x:Name="LanguageComboBox"
+                Grid.Row="2"
+                Grid.Column="1"
+                BackgroundColor="Gray"
+                IsEnabled="False"
+                HeightRequest="40"/>
 
         <Label Text="Tekst w [twój język]:" Grid.Row="3" Grid.Column="0"/>
         <Entry x:Name="NameEntry" Placeholder="Wpisz słowo w twoim języku." PlaceholderColor="DimGray" Grid.Row="3" Grid.Column="1"/>
