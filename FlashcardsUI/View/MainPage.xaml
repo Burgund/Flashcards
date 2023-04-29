@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              x:Class="FlashcardsUI.MainPage">
 
     <Grid Padding="30,0">
@@ -203,8 +202,8 @@
                 HeightRequest="20"
                 VerticalOptions="Center" />
 
-            <editors:SfComboBox 
-                x:Name="LanguageComboBox"
+            <Picker
+                x:Name="LanguagePicker"
                 IsEnabled="False"
                 Margin="10,10,10,10"
                 Grid.Row="0"
@@ -227,8 +226,8 @@
                 HeightRequest="20"
                 VerticalOptions="Center" />
 
-            <editors:SfComboBox 
-                x:Name="LearningLanguageComboBox"
+            <Picker 
+                x:Name="LearningLanguagePicker" 
                 Margin="10,10,10,10"
                 Grid.Row="0"
                 Grid.Column="3"
@@ -238,7 +237,7 @@
                 HeightRequest="30"
                 BackgroundColor="MediumOrchid"
                 TextColor="Indigo"
-                SelectionChanged="LearningLanguageComboBoxSelectionChanged" />
+                SelectedIndexChanged="LearningLanguagePickerSelectionChanged"/>
         </Grid>
 
         <Label 

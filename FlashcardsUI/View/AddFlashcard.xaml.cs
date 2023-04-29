@@ -19,11 +19,11 @@ public partial class AddFlashcard : Popup
 
     private void InitializeComponentData()
     {
-        LearningLanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
-        LearningLanguageComboBox.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
+        LearningLanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
+        LearningLanguagePicker.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
 
-        LanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
-        LanguageComboBox.SelectedItem = accountCacheProcessor.GetLanguage();
+        LanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
+        LanguagePicker.SelectedItem = accountCacheProcessor.GetLanguage();
     }
 
     void OnCancelButtonClicked(object? sender, EventArgs e) => Close();
@@ -33,7 +33,7 @@ public partial class AddFlashcard : Popup
         var name = NameEntry.Text;
         var learningName = LearningNameEntry.Text;
         var language = Languages.Polish;
-        var learningLanguage = (Languages)LearningLanguageComboBox.SelectedItem;
+        var learningLanguage = (Languages)LearningLanguagePicker.SelectedItem;
         var description = DescriptionEditor.Text;
 
         var result = new Flashcard(name, learningName, language, learningLanguage, description);
