@@ -24,16 +24,16 @@ public partial class MainPage : ContentPage
 
     private void InitializeComponentData()
     {
-        LanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
-        LanguageComboBox.SelectedItem = accountCacheProcessor.GetLanguage();
-        SetFlagImage((Languages)LanguageComboBox.SelectedItem, LanguageImg);
+        LanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
+        LanguagePicker.SelectedItem = accountCacheProcessor.GetLanguage();
+        SetFlagImage((Languages)LanguagePicker.SelectedItem, LanguageImg);
 
-        LearningLanguageComboBox.ItemsSource = Enum.GetValues(typeof(Languages));
-        LearningLanguageComboBox.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
-        SetFlagImage((Languages)LearningLanguageComboBox.SelectedItem, LearningLanguageImg);
+        LearningLanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
+        LearningLanguagePicker.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
+        SetFlagImage((Languages)LearningLanguagePicker.SelectedItem, LearningLanguageImg);
     }
 
-	private async void AddFlashcardClicked(object sender, EventArgs e)
+    private async void AddFlashcardClicked(object sender, EventArgs e)
 	{
         var addCardPopup = new AddFlashcard(accountCacheProcessor);
 
@@ -106,9 +106,9 @@ public partial class MainPage : ContentPage
             image.Source = "fla_pl.png";
     }
 
-    private void LearningLanguageComboBoxSelectionChanged(object sender, EventArgs e)
+    private void LearningLanguagePickerSelectionChanged(object sender, EventArgs e)
     {
-        var selectedLanguage = (Languages)LearningLanguageComboBox.SelectedItem;
+        var selectedLanguage = (Languages)LearningLanguagePicker.SelectedItem;
         SetFlagImage(selectedLanguage, LearningLanguageImg);
         userConfigurationController.SetCurrentLearningLanguage(selectedLanguage);
     }
