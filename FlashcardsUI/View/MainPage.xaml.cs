@@ -34,6 +34,10 @@ public partial class MainPage : ContentPage
     {
         var learningLanguage = accountCacheProcessor.GetCurrentLearningLanguage();
 
+        SelectedFlashcards = new ObservableCollection<Flashcard>();
+        BindingContext = this;
+        LoadFlashcardsList(learningLanguage);
+
         LanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
         LanguagePicker.SelectedItem = accountCacheProcessor.GetLanguage();
         SetFlagImage((Languages)LanguagePicker.SelectedItem, LanguageImg);
@@ -41,13 +45,6 @@ public partial class MainPage : ContentPage
         LearningLanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
         LearningLanguagePicker.SelectedItem = learningLanguage;
         SetFlagImage((Languages)LearningLanguagePicker.SelectedItem, LearningLanguageImg);
-
-        SelectedFlashcards = new ObservableCollection<Flashcard>();
-        BindingContext = this;
-
-        var selectedFlashcardsFromCache = flashcardsCacheProcessor.GetFlashcardsForLearningLanguage(learningLanguage);
-        foreach(var selectedFlashcard in selectedFlashcardsFromCache)
-            SelectedFlashcards.Add(selectedFlashcard);
     }
 
     private async void AddFlashcardClicked(object sender, EventArgs e)
@@ -65,7 +62,9 @@ public partial class MainPage : ContentPage
             {
                 PrepareLabelAsMessage(DebugLabel);
                 DebugLabel.Text = responseFlashcard.ToString();
-                SelectedFlashcards.Add(responseFlashcard);
+
+                if(responseFlashcard.LearningLanguage == accountCacheProcessor.GetCurrentLearningLanguage())
+                    SelectedFlashcards.Add(responseFlashcard);
             }
             else
             {
@@ -129,6 +128,17 @@ public partial class MainPage : ContentPage
         var selectedLanguage = (Languages)LearningLanguagePicker.SelectedItem;
         SetFlagImage(selectedLanguage, LearningLanguageImg);
         userConfigurationController.SetCurrentLearningLanguage(selectedLanguage);
+
+        LoadFlashcardsList(selectedLanguage);
+    }
+
+    private void LoadFlashcardsList(Languages language)
+    {
+        SelectedFlashcards.Clear();
+
+        var selectedFlashcardsFromCache = flashcardsCacheProcessor.GetFlashcardsForLearningLanguage(language);
+        foreach (var selectedFlashcard in selectedFlashcardsFromCache)
+            SelectedFlashcards.Add(selectedFlashcard);
     }
 }
 

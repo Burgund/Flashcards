@@ -80,6 +80,7 @@
             VerticalOptions="Center" />
 
         <CollectionView
+            x:Name="FlashcardsCollectionView"
             Grid.Row="1" 
             Grid.Column="2" 
             Grid.RowSpan="3" 
