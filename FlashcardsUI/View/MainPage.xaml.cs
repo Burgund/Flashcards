@@ -12,14 +12,19 @@ public partial class MainPage : ContentPage
 	private readonly FlashcardsProcessor flashcardsProcessor;
     private readonly AccountCacheProcessor accountCacheProcessor;
     private readonly UserConfigurationController userConfigurationController;
+    private readonly FlashcardsCacheProcessor flashcardsCacheProcessor;
 
     public ObservableCollection<Flashcard> SelectedFlashcards { get; set; }
 
-    public MainPage(FlashcardsProcessor flashcardsProcessor, AccountCacheProcessor accountCacheProcessor, UserConfigurationController userConfigurationController)
+    public MainPage(FlashcardsProcessor flashcardsProcessor, 
+        AccountCacheProcessor accountCacheProcessor, 
+        UserConfigurationController userConfigurationController,
+        FlashcardsCacheProcessor flashcardsCacheProcessor)
 	{
         this.flashcardsProcessor = flashcardsProcessor;
         this.accountCacheProcessor = accountCacheProcessor;
         this.userConfigurationController = userConfigurationController;
+        this.flashcardsCacheProcessor = flashcardsCacheProcessor;
 
         InitializeComponent();
         InitializeComponentData();
@@ -27,30 +32,22 @@ public partial class MainPage : ContentPage
 
     private void InitializeComponentData()
     {
+        var learningLanguage = accountCacheProcessor.GetCurrentLearningLanguage();
+
         LanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
         LanguagePicker.SelectedItem = accountCacheProcessor.GetLanguage();
         SetFlagImage((Languages)LanguagePicker.SelectedItem, LanguageImg);
 
         LearningLanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
-        LearningLanguagePicker.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
+        LearningLanguagePicker.SelectedItem = learningLanguage;
         SetFlagImage((Languages)LearningLanguagePicker.SelectedItem, LearningLanguageImg);
 
         SelectedFlashcards = new ObservableCollection<Flashcard>();
-
         BindingContext = this;
 
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
-
-        //DataContext = this;
+        var selectedFlashcardsFromCache = flashcardsCacheProcessor.GetFlashcardsForLearningLanguage(learningLanguage);
+        foreach(var selectedFlashcard in selectedFlashcardsFromCache)
+            SelectedFlashcards.Add(selectedFlashcard);
     }
 
     private async void AddFlashcardClicked(object sender, EventArgs e)
@@ -62,12 +59,13 @@ public partial class MainPage : ContentPage
 
 		if (newFlashcard != null)
 		{
-			var response = flashcardsProcessor.AddFlashcard(newFlashcard);
+			var responseFlashcard = flashcardsProcessor.AddFlashcard(newFlashcard);
             
-            if (response != null)
+            if (responseFlashcard != null)
             {
                 PrepareLabelAsMessage(DebugLabel);
-                DebugLabel.Text = response.ToString();
+                DebugLabel.Text = responseFlashcard.ToString();
+                SelectedFlashcards.Add(responseFlashcard);
             }
             else
             {
