@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:FlashcardsCommon.Models;assembly=FlashcardsCommon"
              x:Class="FlashcardsUI.MainPage">
 
     <Grid Padding="30,0">
@@ -78,50 +79,29 @@
             HorizontalOptions="Center"
             VerticalOptions="Center" />
 
-        <TableView Intent="Data" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" HorizontalOptions="Center">
-            <TableRoot>
-                <TableSection Title="Lista fiszek placeholder" TextColor="Indigo">
-                    <TextCell Text="Fiszka 1 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 1 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 2 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 2 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 3 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 3 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 4 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 4 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 5 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 5 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 6 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 6 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 7 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 7 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 8 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 8 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 9 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 9 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 10 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 10 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 11 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 11 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 12 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 12 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 13 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 13 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 14 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 14 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 15 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 15 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 16 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 16 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 17 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 17 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 18 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 18 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                    <TextCell Text="Fiszka 19 placeholder"
-                      Detail="Lorem ipsum foofoo fiszka 19 placeholder" TextColor="Indigo" DetailColor="Indigo"/>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+        <CollectionView
+            Grid.Row="1" 
+            Grid.Column="2" 
+            Grid.RowSpan="3" 
+            HorizontalOptions="Center"
+            ItemsSource="{Binding SelectedFlashcards}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Flashcard">
+                    <VerticalStackLayout Margin="15">
+                        <Label 
+                            Text="{Binding Name}" 
+                            TextColor="Indigo" 
+                            WidthRequest="200"
+                            SemanticProperties.HeadingLevel="Level1"/>
+                        <Label 
+                            Text="{Binding LearningName}" 
+                            TextColor="Indigo" 
+                            WidthRequest="200"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <Label 
             Margin="0,20,0,20"

@@ -3,6 +3,7 @@ using FlashcardsCommon.Models;
 using FlashcardsAPI.Processors;
 using FlashcardsUI.View;
 using FlashcardsAPI.Controllers;
+using System.Collections.ObjectModel;
 
 namespace FlashcardsUI;
 
@@ -11,6 +12,8 @@ public partial class MainPage : ContentPage
 	private readonly FlashcardsProcessor flashcardsProcessor;
     private readonly AccountCacheProcessor accountCacheProcessor;
     private readonly UserConfigurationController userConfigurationController;
+
+    public ObservableCollection<Flashcard> SelectedFlashcards { get; set; }
 
     public MainPage(FlashcardsProcessor flashcardsProcessor, AccountCacheProcessor accountCacheProcessor, UserConfigurationController userConfigurationController)
 	{
@@ -31,6 +34,23 @@ public partial class MainPage : ContentPage
         LearningLanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
         LearningLanguagePicker.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
         SetFlagImage((Languages)LearningLanguagePicker.SelectedItem, LearningLanguageImg);
+
+        SelectedFlashcards = new ObservableCollection<Flashcard>();
+
+        BindingContext = this;
+
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+        SelectedFlashcards.Add(new Flashcard("test", "test2", Languages.Polish, Languages.English, "testDesc"));
+
+        //DataContext = this;
     }
 
     private async void AddFlashcardClicked(object sender, EventArgs e)
