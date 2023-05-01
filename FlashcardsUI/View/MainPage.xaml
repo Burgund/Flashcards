@@ -88,17 +88,43 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Flashcard">
-                    <VerticalStackLayout Margin="15">
+                    <Grid Padding="5,5" WidthRequest="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
                         <Label 
                             Text="{Binding Name}" 
                             TextColor="Indigo" 
-                            WidthRequest="200"
-                            SemanticProperties.HeadingLevel="Level1"/>
+                            Grid.Row="0" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="3"
+                            FontAttributes="Bold"/>
                         <Label 
-                            Text="{Binding LearningName}" 
+                            Text="{Binding LastAnswer}" 
                             TextColor="Indigo" 
-                            WidthRequest="200"/>
-                    </VerticalStackLayout>
+                            Grid.Row="1" 
+                            Grid.Column="0" 
+                            VerticalOptions="Start" />
+                        <Label 
+                            Text="{Binding Priority}" 
+                            TextColor="Indigo" 
+                            Grid.Row="1" 
+                            Grid.Column="1"
+                            VerticalOptions="Start" />
+                        <Button
+                            Text="Pokaż fiszkę" 
+                            BackgroundColor="Indigo" 
+                            Grid.Row="1" 
+                            Grid.Column="2"
+                            VerticalOptions="Start" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -130,7 +156,6 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Text="Losuj"
-                SemanticProperties.Hint="Pokaż losową fiszkę"
                 Clicked="RandomFishcardClicked"
                 HorizontalOptions="End"
                 HeightRequest="12" />
@@ -142,7 +167,6 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Text="Dodaj fiszkę"
-                SemanticProperties.Hint="Dodaje nową fiszkę"
                 Clicked="AddFlashcardClicked"
                 HorizontalOptions="Center"
                 HeightRequest="12" />
@@ -154,7 +178,6 @@
                 Grid.Row="0"
                 Grid.Column="2"
                 Text="Rozpocznij naukę"
-                SemanticProperties.Hint="Rozpocznij naukę"
                 Clicked="LearnClicked"
                 HorizontalOptions="Start"
                 HeightRequest="12" />
@@ -177,7 +200,6 @@
                 Margin="10,10,10,10"
                 Grid.Row="0"
                 Grid.Column="0"
-                SemanticProperties.Description="Learning language country flag"
                 HorizontalOptions="Center"
                 HeightRequest="20"
                 VerticalOptions="Center" />
@@ -201,7 +223,6 @@
                 Margin="10,10,10,10"
                 Grid.Row="0"
                 Grid.Column="2"
-                SemanticProperties.Description="Learning language country flag"
                 HorizontalOptions="Center"
                 HeightRequest="20"
                 VerticalOptions="Center" />
