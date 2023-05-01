@@ -3,6 +3,7 @@ using FlashcardsCommon.Models;
 using FlashcardsAPI.Processors;
 using FlashcardsUI.View;
 using FlashcardsAPI.Controllers;
+using System.Collections.ObjectModel;
 
 namespace FlashcardsUI;
 
@@ -11,12 +12,19 @@ public partial class MainPage : ContentPage
 	private readonly FlashcardsProcessor flashcardsProcessor;
     private readonly AccountCacheProcessor accountCacheProcessor;
     private readonly UserConfigurationController userConfigurationController;
+    private readonly FlashcardsCacheProcessor flashcardsCacheProcessor;
 
-    public MainPage(FlashcardsProcessor flashcardsProcessor, AccountCacheProcessor accountCacheProcessor, UserConfigurationController userConfigurationController)
+    public ObservableCollection<Flashcard> SelectedFlashcards { get; set; }
+
+    public MainPage(FlashcardsProcessor flashcardsProcessor, 
+        AccountCacheProcessor accountCacheProcessor, 
+        UserConfigurationController userConfigurationController,
+        FlashcardsCacheProcessor flashcardsCacheProcessor)
 	{
         this.flashcardsProcessor = flashcardsProcessor;
         this.accountCacheProcessor = accountCacheProcessor;
         this.userConfigurationController = userConfigurationController;
+        this.flashcardsCacheProcessor = flashcardsCacheProcessor;
 
         InitializeComponent();
         InitializeComponentData();
@@ -24,12 +32,18 @@ public partial class MainPage : ContentPage
 
     private void InitializeComponentData()
     {
+        var learningLanguage = accountCacheProcessor.GetCurrentLearningLanguage();
+
+        SelectedFlashcards = new ObservableCollection<Flashcard>();
+        BindingContext = this;
+        LoadFlashcardsList(learningLanguage);
+
         LanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
         LanguagePicker.SelectedItem = accountCacheProcessor.GetLanguage();
         SetFlagImage((Languages)LanguagePicker.SelectedItem, LanguageImg);
 
         LearningLanguagePicker.ItemsSource = Enum.GetValues(typeof(Languages));
-        LearningLanguagePicker.SelectedItem = accountCacheProcessor.GetCurrentLearningLanguage();
+        LearningLanguagePicker.SelectedItem = learningLanguage;
         SetFlagImage((Languages)LearningLanguagePicker.SelectedItem, LearningLanguageImg);
     }
 
@@ -42,12 +56,15 @@ public partial class MainPage : ContentPage
 
 		if (newFlashcard != null)
 		{
-			var response = flashcardsProcessor.AddFlashcard(newFlashcard);
+			var responseFlashcard = flashcardsProcessor.AddFlashcard(newFlashcard);
             
-            if (response != null)
+            if (responseFlashcard != null)
             {
                 PrepareLabelAsMessage(DebugLabel);
-                DebugLabel.Text = response.ToString();
+                DebugLabel.Text = responseFlashcard.ToString();
+
+                if(responseFlashcard.LearningLanguage == accountCacheProcessor.GetCurrentLearningLanguage())
+                    SelectedFlashcards.Add(responseFlashcard);
             }
             else
             {
@@ -111,6 +128,17 @@ public partial class MainPage : ContentPage
         var selectedLanguage = (Languages)LearningLanguagePicker.SelectedItem;
         SetFlagImage(selectedLanguage, LearningLanguageImg);
         userConfigurationController.SetCurrentLearningLanguage(selectedLanguage);
+
+        LoadFlashcardsList(selectedLanguage);
+    }
+
+    private void LoadFlashcardsList(Languages language)
+    {
+        SelectedFlashcards.Clear();
+
+        var selectedFlashcardsFromCache = flashcardsCacheProcessor.GetFlashcardsForLearningLanguage(language);
+        foreach (var selectedFlashcard in selectedFlashcardsFromCache)
+            SelectedFlashcards.Add(selectedFlashcard);
     }
 }
 

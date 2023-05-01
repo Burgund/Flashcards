@@ -35,5 +35,10 @@ namespace FlashcardsAPI.Processors
         {
             return flashcardsDataCache.Flashcards.LastOrDefault();
         }
+
+        public List<Flashcard> GetFlashcardsForLearningLanguage(Languages language)
+        {
+            return flashcardsDataCache.Flashcards.Where(f => f.LearningLanguage == language).ToList();
+        }
     }
 }
